@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Psy\Readline\Hoa\Console;
 
 class StudentController extends Controller
 {
@@ -34,15 +35,15 @@ class StudentController extends Controller
             'last_name'=> 'required|string|max:255',
             'dob' => 'required|date',
             'gender'=> 'required|in:Male,Female,Other',
-            'Contact_number'=> 'required|string|max:15',
+            'contact_number'=> 'required|string|max:15',
             'email'=> 'required|unique:students,email',
             'address'=> 'required|string',
-
         ]);
 
-        student::create($validated);
+        Student::create($validated);
 
-        return redirect()->route('students.index')->with('success','Student created successfully');
+        return redirect()->route('students.index')
+            ->with('success', 'Student created successfully!');
 
     }
 

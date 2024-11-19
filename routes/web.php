@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\InstituteController;
 use App\Http\Controllers\StudentController;
 use App\Models\Student;
@@ -11,3 +12,4 @@ Route::get('/', function () {
 
 Route::resource('institutes', InstituteController::class);
 Route::resource('students', StudentController::class);
+Route::resource('courses', CourseController::class);

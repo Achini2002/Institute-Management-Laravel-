@@ -12,7 +12,7 @@
             <tr>
                 <th>First Name</th>
                 <th>Last Name</th>
-                <th>Date of Birthday</th>
+                <th>Date of Birth</th>
                 <th>Gender</th>
                 <th>Contact Number</th>
                 <th>Email</th>
