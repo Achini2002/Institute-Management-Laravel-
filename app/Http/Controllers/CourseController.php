@@ -13,7 +13,7 @@ class CourseController extends Controller
     public function index()
     {
         $courses = Course::all();
-        return view("courses.index", compact("courses"));
+        return view('courses.index', compact('courses'));
     }
 
     /**
@@ -21,7 +21,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        return view("courses.create");
+        return view('courses.create');
     }
 
     /**
@@ -34,7 +34,7 @@ class CourseController extends Controller
             'duration' => 'required|string|max:255',
         ]);
 
-        course::create($validated);
+        Course::create($validated);
         return redirect()->route('courses.index')->with('success','Course created successfully..');
     }
 
