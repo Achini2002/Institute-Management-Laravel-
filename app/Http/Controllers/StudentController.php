@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use Illuminate\Http\Request;
-use Psy\Readline\Hoa\Console;
+
 
 class StudentController extends Controller
 {

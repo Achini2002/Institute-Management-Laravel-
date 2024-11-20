@@ -1,11 +1,12 @@
 @extends('app')
 
-@section('content')
+@section('content') 
 <h1>Edit Student</h1>
 
-<form action="{{route('students.store')}}" method="POST">
+<form action="{{route('students.store',$student->stu_id)}}" method="POST">
 
         @csrf
+        @method('PUT')
         <div class="mb-3">
             <lable for="first_name" class="form-lable">First Name</lable>
             <input type="text" name="first_name" id="first_name" class="form-control" value="{{old('first_name',$student->first_name)}}" required>

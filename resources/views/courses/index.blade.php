@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('content')
+@section('content') 
 
     <div class="d-flex justify-content-between align-items-center">
         <h1>Courses</h1>

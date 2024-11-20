@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Student;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 
@@ -31,7 +30,7 @@ class SubjectController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'subject_name' =>'required|string|max:255',
+            'sub_name' =>'required|string|max:255',
             'credit_hours'=> 'required|string|max:255',
         ]);
 
@@ -61,17 +60,17 @@ class SubjectController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Student $student)
+    public function update(Request $request, Subject $subject)
     {
         $validated = $request->validate([
-            'subject_name' =>'required|string|max:255',
+            'sub_name' =>'required|string|max:255',
             'credit_hours'=> 'required|string|max:255',
         ]);
 
         
-        $student->update($validated);   
+        $subject->update($validated);   
         return redirect()->route('subjects.index')->with('success','Subjects updated successfully');
-    
+     
     }
 
     /**
