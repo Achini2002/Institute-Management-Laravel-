@@ -7,7 +7,7 @@
         <a href="{{route('courses.create')}}" class="btn btn-primary">Add New Courses</a>
     </div>
 
-    <form action="{{route('courses.store')}}" method="POST"></form>
+    <form action="{{route('courses.store')}}" method="POST">
         @csrf
 
         <div class="mb-3">

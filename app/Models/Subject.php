@@ -9,6 +9,8 @@ class Subject extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $primaryKey = 'sub_id';
     protected $fillable = ['sub_name', 'credit_hours'];
 
