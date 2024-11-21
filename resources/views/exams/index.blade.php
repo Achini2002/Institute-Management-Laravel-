@@ -18,6 +18,7 @@
         <tbody>
             @foreach ($exams as $exam)
             <tr>
+                <td>{{$exam->exam_id}}</td>
                 <td>{{$exam->exam_name}}</td>
                 <td>{{$exam->exam_date}}</td>
                 
@@ -27,8 +28,11 @@
                         <form action="{{route('exams.destroy',$exam->exam_id)}}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
                         </form>
+
+                        <a href="{{route('exam_students.index',$exam->exam_id)}}" class="btn btn-sm btn-info">Manage Students</a>
+                        <a href="{{route('exam_subjects.index',$exam->exam_id)}}" class="btn btn-sm btn-info">Manage Subjects</a>
                 </td>
             </tr>
             

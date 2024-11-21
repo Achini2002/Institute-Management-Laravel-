@@ -23,4 +23,8 @@ class Subject extends Model
     {
         return $this->belongsToMany(Course::class, 'course_has_subject', 'subject_sub_id', 'course_course_id');
     }
+
+    public function exams(){
+        return $this->belongsToMany(Exam::class,'exam_has_subject','subject_id','exam_id');
+    }
 }

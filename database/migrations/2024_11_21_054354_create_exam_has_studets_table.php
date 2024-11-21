@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('exam_has_studets', function (Blueprint $table) {
+        Schema::create('exam_has_students', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('exam_id')->constrained('exams')->onDelete('exam_id');
-            $table->foreignId('stu_id')->constrained('students')->onDelete('stu_id');
+            $table->foreignId('exam_id')->constrained('exams', 'exam_id');
+            $table->foreignId('stu_id')->constrained('students', 'stu_id');
             $table->timestamps();
         });
     }
