@@ -9,6 +9,8 @@ class Branch extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $primaryKey = 'branch_id';
     protected $fillable = ['branch_name', 'address', 'institute_inst_id'];
 

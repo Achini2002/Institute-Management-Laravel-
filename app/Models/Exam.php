@@ -9,8 +9,10 @@ class Exam extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $primaryKey = 'exam_id';
-    protected $fillable = ['exam_name', 'exam_date', 'total_marks'];
+    protected $fillable = ['exam_name', 'exam_date'];
 
     public function results()
     {
