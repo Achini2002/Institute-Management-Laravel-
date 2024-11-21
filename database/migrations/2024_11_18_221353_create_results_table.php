@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id('result_id');
             $table->string('grade', 45);
             $table->string('mark_obtained', 45);
-            $table->foreignId('student_stu_id')->constrained('students', 'stu_id');
+           
             $table->foreignId('exam_exam_id')->constrained('exams', 'exam_id');
             $table->primary('result_id');
         });

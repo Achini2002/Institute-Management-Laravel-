@@ -10,13 +10,9 @@ class Result extends Model
     use HasFactory;
 
     protected $primaryKey = 'result_id';
-    protected $fillable = ['grade', 'mark_obtained', 'student_stu_id', 'exam_exam_id'];
+    protected $fillable = ['grade', 'mark_obtained',  'exam_exam_id'];
 
-    public function student()
-    {
-        return $this->belongsTo(Student::class, 'student_stu_id');
-    }
-
+    
     public function exam()
     {
         return $this->belongsTo(Exam::class, 'exam_exam_id');
