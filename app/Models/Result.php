@@ -9,6 +9,8 @@ class Result extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $primaryKey = 'result_id';
     protected $fillable = ['grade', 'mark_obtained',  'exam_exam_id', 'sub_id', 'stu_id'];
 

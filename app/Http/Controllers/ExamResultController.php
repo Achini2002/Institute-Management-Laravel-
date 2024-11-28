@@ -13,7 +13,7 @@ class ExamResultController extends Controller
      */
     public function index($examId)
     {
-        $exam = Exam::findOrFail($examId);
+        $exam = Exam::with(['students','subjects'])->findOrFail($examId);
         $students = $exam->students;
         $subjects = $exam->subjects;
 
@@ -30,31 +30,43 @@ class ExamResultController extends Controller
     public function store(Request $request,$examId)
     {
         $validated = $request->validate([
-            'results'=> 'required|array',
-            'results.*.'=> 'nullable|integer|min:0|max:100',// Marks between 0 and 100
+            'stu_id'=> 'required|exists:students,stu_id',
+            'sub_id'=> 'required|exists:subjects,sub_id',
+            'mark_obtained'=> 'required|numeric|min:0',
         ]);
 
-        foreach($validated['results'] as $studentId => $subjects) {
-            foreach ($subjects as $subjectId => $marks){
-                if ($marks !== null ) {
-                    Result::updatedOrCreated(
-                        [
-                        'exam_exam_id' => $examId,
-                        'stu_id'=> $studentId,
-                        'sub_id'=> $subjectId,
-                        ],
+        // automatically assign grade basedon mark_obtanied
+        $mark = $validated['mark_obtanied'];
+        $grade = $this->calculateGrade($mark);
 
-                        [
-                            'mark_obtained' => $marks,
-                        ]
-                
-                    );
-                }
-            }
-        }
 
-        return redirect()->route('exam_results.index', $examId)->with('success','Results saved successfully!');
+        $result = Result::updateOrCreate([
+            'exam_exam_id'=> $examId,
+            'stu_id' => $validated['stu_id'],
+            'sub_id'=> $validated['sub_id'],
+        ],
+        [
+            'mark_obtained' => $mark,
+            'grade'=> $grade,
+        ]
+    );
+
+    return redirect()->route('exam_results.index', ['examId'=> $examId])->with('success','Result saved successfully');
+
     }
 
-    
+    private function calculateGrade($mark)
+    {
+            if($mark < 35){ 
+                return 'Fail';
+        } elseif ($mark >= 35 && $mark < 55) {
+            return 'C';
+        } elseif ($mark >= 55 && $mark < 65) {
+            return 'B';
+        } elseif ($mark >= 65 && $mark < 75) {
+            return 'A';
+        } else {
+            return 'A+';
+        }    
+    }
 }

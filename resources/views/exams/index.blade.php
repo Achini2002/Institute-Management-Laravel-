@@ -5,18 +5,18 @@
     <div class="d-flex justify-content-between align-items-center">
         <h1>Exams</h1>
         <a href="{{route('exams.create')}}" class="btn btn-primary">Add New Exam</a>
-    
+    </div>
 
-    <table class="table table-boardered mt-3">
-        <thead>
-            <tr>
-                <th>Exam Name</th>
-                <th>Exam Date</th>
-                <th>Actions</th>
+        <table class="table table-boardered mt-3">
+            <thead>
+                <tr>
+                    <th>Exam Name</th>
+                    <th>Exam Date</th>
+                    <th>Actions</th>
                 
-            </tr>
-        </thead>
-        <tbody>
+                </tr>
+            </thead>
+            <tbody>
             @forelse ($exams as $exam)
             <tr>
                 <td>{{$exam->exam_id}}</td>
@@ -42,11 +42,11 @@
                 <td colspan="5">No exams found.</td>
             </tr>
             @endforelse
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-     {{ $exams->links() }}
+    
 
-    </div>
+
 
 @endsection
