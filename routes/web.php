@@ -3,6 +3,7 @@
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ExamController;
+use App\Http\Controllers\ExamResultController;
 use App\Http\Controllers\ExamStudentController;
 use App\Http\Controllers\ExamSubjectController;
 use App\Http\Controllers\InstituteController;
@@ -31,3 +32,6 @@ Route::resource('exams',ExamController::class);
 Route::get('/exams/{examId}/subjects', [ExamSubjectController::class, 'index'])->name('exam_subjects.index');
 Route::post('/exams/{examId}/subjects', [ExamSubjectController::class, 'addSubject'])->name('exam_subjects.add');
 Route::delete('/exams/{examId}/subjects/{subjectId}', [ExamSubjectController::class, 'removeSubject'])->name('exam_subjects.remove');
+Route::get('/exams/results', [ExamResultController::class, 'selectExam'])->name('exam_results.select');
+Route::get('/exams/{examId}/results', [ExamResultController::class, 'index'])->name('exam_results.index');
+Route::post('/exams/{examId}/results', [ExamResultController::class, 'store'])->name('exam_results.store');

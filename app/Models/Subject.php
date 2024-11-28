@@ -16,7 +16,8 @@ class Subject extends Model
 
     public function results()
     {
-        return $this->belongsToMany(Result::class, 'subject_has_result', 'subject_sub_id', 'result_result_id');
+        //return $this->belongsToMany(Result::class, 'subject_has_result', 'subject_sub_id', 'result_result_id');
+        return $this->hasMany(Result::class,'sub_id','sub_id');
     }
 
     public function courses()

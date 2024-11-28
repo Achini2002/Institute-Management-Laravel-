@@ -16,7 +16,7 @@ class Exam extends Model
 
     public function results()
     {
-        return $this->hasMany(Result::class, 'exam_exam_id');
+        return $this->hasMany(Result::class, 'exam_exam_id','examid');
     }
 
     public function students(){

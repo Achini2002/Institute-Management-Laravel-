@@ -18,7 +18,7 @@ class ExamSubjectController extends Controller
         $assignedSubjects = $exam->subjects;
         $availableSubjects = Subject::whereNotIn(
             'sub_id',
-            $assignedSubjects->pluck('sub_id')
+            $assignedSubjects->pluck('subject_id')
         )->get();
 
         return view(
@@ -29,72 +29,58 @@ class ExamSubjectController extends Controller
                 'availableSubjects'
             )
         );
+
     }
 
-    public function addSubjects(Request $request,$examId){
+
+    public function addSubject(Request $request, $examId)
+    {
         $validated = $request->validate([
-            'subject_id'=> 'required|exists|subjects,sub_id',
+            'subject_id' => 'required|exists:subjects,sub_id',
         ]);
 
         $exam = Exam::find($examId);
-        $exam->subjects()->attach($validated['student_id']);
+        $exam->subjects()->attach($validated['subject_id']);
 
-        return redirect()->route('exam_subjects.index',$examId)->with('success','Subject added successfully');
-
+        return redirect()->route(
+            'exam_subjects.index',
+            $examId
+        )->with(
+                'success',
+                'Subject added successfully!'
+            );
     }
 
-    public function removeStudent($examId,$subjectId){
+    public function removeSubject($examId,$subjectId){
         $exam = Exam::find($examId);
         $exam->subjects()->detach($subjectId);
 
-        return redirect()->route('exam_subjects_index',$examId)->with('success', 'Subject removed successfully');
+        return redirect()->route('exam_subjects.index',$examId)->with('success', 'Subject removed successfully');
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        //
-    }
+    
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
-    }
+    
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
-    }
+    
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
-    }
+   
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+    
+    
 }
