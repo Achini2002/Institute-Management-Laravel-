@@ -12,7 +12,15 @@ class Student extends Model
     public $timestamps = false;
 
     protected $primaryKey = 'stu_id';
-    protected $fillable = ['first_name', 'last_name', 'dob', 'gender', 'contact_number', 'email', 'address'];
+    protected $fillable = [
+        'first_name',
+        'last_name',
+        'dob',
+        'gender',
+        'contact_number',
+        'email',
+        'address'
+    ];
 
     public function results()
     {

@@ -9,15 +9,13 @@ class Subject extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
-
     protected $primaryKey = 'sub_id';
     protected $fillable = ['sub_name', 'credit_hours'];
 
     public function results()
     {
-        //return $this->belongsToMany(Result::class, 'subject_has_result', 'subject_sub_id', 'result_result_id');
-        return $this->hasMany(Result::class,'sub_id','sub_id');
+        // return $this->belongsToMany(Result::class, 'subject_has_result', 'subject_sub_id', 'result_result_id');
+        return $this->hasMany(Result::class, 'sub_id', 'sub_id');
     }
 
     public function courses()
@@ -25,7 +23,9 @@ class Subject extends Model
         return $this->belongsToMany(Course::class, 'course_has_subject', 'subject_sub_id', 'course_course_id');
     }
 
-    public function exams(){
-        return $this->belongsToMany(Exam::class,'exam_has_subject','subject_id','exam_id');
+    public function exams()
+    {
+        return $this->belongsToMany(Exam::class, 'exam_has_subjects', 'subject_id', 'exam_id');
     }
+
 }

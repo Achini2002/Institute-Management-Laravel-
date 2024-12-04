@@ -29,9 +29,10 @@ Route::resource('exams',ExamController::class);
         Route::delete('/remove/{studentId}',[ExamStudentController::class,'removeStudent'])->name('exam_students.remove');
     });
 
-Route::get('/exams/{examId}/subjects', [ExamSubjectController::class, 'index'])->name('exam_subjects.index');
-Route::post('/exams/{examId}/subjects', [ExamSubjectController::class, 'addSubject'])->name('exam_subjects.add');
-Route::delete('/exams/{examId}/subjects/{subjectId}', [ExamSubjectController::class, 'removeSubject'])->name('exam_subjects.remove');
-Route::get('/exams/results', [ExamResultController::class, 'selectExam'])->name('exam_results.select');
-Route::get('/exams/{examId}/results', [ExamResultController::class, 'index'])->name('exam_results.index');
-Route::post('/exams/{examId}/results', [ExamResultController::class, 'store'])->name('exam_results.store');
+    Route::get('/exams/{examId}/subjects', [ExamSubjectController::class, 'index'])->name('exam_subjects.index');
+    Route::post('/exams/{examId}/subjects', [ExamSubjectController::class, 'addSubject'])->name('exam_subjects.add');
+    Route::delete('/exams/{examId}/subjects/{subjectId}', [ExamSubjectController::class, 'removeSubject'])->name('exam_subjects.remove');
+    
+    Route::get('/exams/results', [ExamResultController::class, 'selectExam'])->name('exam_results.select');
+    Route::get('/exams/{examId}/results', [ExamResultController::class, 'index'])->name('exam_results.index');
+    Route::post('/exams/{examId}/results', [ExamResultController::class, 'store'])->name('exam_results.store');

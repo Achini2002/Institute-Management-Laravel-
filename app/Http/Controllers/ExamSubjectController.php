@@ -8,9 +8,6 @@ use Illuminate\Http\Request;
 
 class ExamSubjectController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index($examId)
     {
         $exam = Exam::find($examId);
@@ -32,7 +29,6 @@ class ExamSubjectController extends Controller
 
     }
 
-
     public function addSubject(Request $request, $examId)
     {
         $validated = $request->validate([
@@ -51,36 +47,14 @@ class ExamSubjectController extends Controller
             );
     }
 
-    public function removeSubject($examId,$subjectId){
+    public function removeSubject($examId, $subjectId)
+    {
         $exam = Exam::find($examId);
         $exam->subjects()->detach($subjectId);
 
-        return redirect()->route('exam_subjects.index',$examId)->with('success', 'Subject removed successfully');
+        return redirect()->route('exam_subjects.index', $examId)
+            ->with('success', 'Subject removed successfully');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    
-
-    /**
-     * Display the specified resource.
-     */
-    
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-   
-
-    /**
-     * Update the specified resource in storage.
-     */
-    
-    
 }
